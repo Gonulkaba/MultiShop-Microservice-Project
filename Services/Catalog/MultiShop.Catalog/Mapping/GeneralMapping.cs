@@ -1,19 +1,20 @@
 ﻿using AutoMapper;
 using MongoDB.Driver.Core.Misc;
-using MongoDB.Driver.Search;
 using MultiShop.Catalog.Dtos.CategoryDtos;
+using MultiShop.Catalog.Dtos.FeatureDtos;
 using MultiShop.Catalog.Dtos.FeatureSliderDtos;
 using MultiShop.Catalog.Dtos.ProductDetailDtos;
 using MultiShop.Catalog.Dtos.ProductDtos;
 using MultiShop.Catalog.Dtos.ProductImageDtos;
 using MultiShop.Catalog.Dtos.SpecialOfferDtos;
 using MultiShop.Catalog.Entities;
+using Feature = MultiShop.Catalog.Entities.Feature;
 
 namespace MultiShop.Catalog.Mapping
 {
-    public class GenaralMapping : Profile
+    public class GeneralMapping : Profile
     {
-        public GenaralMapping()
+        public GeneralMapping()
         {
             CreateMap<Category, ResultCategoryDto>().ReverseMap();
             CreateMap<Category, CreateCategoryDto>().ReverseMap();
@@ -47,7 +48,15 @@ namespace MultiShop.Catalog.Mapping
             CreateMap<SpecialOffer, UpdateSpecialOfferDto>().ReverseMap();
             CreateMap<SpecialOffer, GetByIdSpecialOfferDto>().ReverseMap();
 
-            
+            CreateMap<Feature, ResultFeatureDto>().ReverseMap();
+            CreateMap<Feature, CreateFeatureDto>().ReverseMap();
+            CreateMap<Feature, UpdateFeatureDto>().ReverseMap();
+            CreateMap<Feature, GetByIdFeatureDto>().ReverseMap();
+
+
+
+
+
 
         }
     }
