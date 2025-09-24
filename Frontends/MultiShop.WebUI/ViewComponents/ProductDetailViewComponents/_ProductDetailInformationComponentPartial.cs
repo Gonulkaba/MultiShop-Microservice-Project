@@ -19,9 +19,9 @@ namespace MultiShop.WebUI.ViewComponents.ProductDetailViewComponents
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<UpdateProductDetailDto>(jsonData);
-                return View(values);
+                return View(values ?? new UpdateProductDetailDto());
             }
-            return View();
+            return View(new UpdateProductDetailDto());
         }
     }
 }

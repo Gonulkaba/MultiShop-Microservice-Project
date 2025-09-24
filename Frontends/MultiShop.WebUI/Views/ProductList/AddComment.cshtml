@@ -1,18 +1,19 @@
-﻿<div class="col-md-6">
+﻿@model string
+<div class="col-md-6">
     <h4 class="mb-4">Bir Yorum Bırakın</h4>
     <small>Yorumunuzun alınması için geçerli bir email adresi giriniz. *</small>
     <div class="d-flex my-3">
         <p class="mb-0 mr-2">Ürün puanınız * :</p>
-        <div class="text-primary">
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
+        <div id="star-rating" class="text-primary">
+            @for (int i = 1; i <= 5; i++)
+            {
+                <i class="far fa-star star" data-value="@i"></i>
+            }
         </div>
     </div>
     <form method="post" asp-action="AddComment" asp-controller="ProductList">
-        
+        <input type="hidden" name="ProductId" value="@Model" />
+        <input type="hidden" id="rating" name="Rating" value="0" />
         <div class="form-group">
             <label for="name">Adınız Soyadınız *</label>
             <input type="text" class="form-control" id="name" name="NameSurname">
@@ -30,3 +31,25 @@
         </div>
     </form>
 </div>
+
+    <script>
+        const stars = document.querySelectorAll("#star-rating .star");
+        const ratingInput = document.getElementById("rating");
+
+        stars.forEach(star => {
+            star.addEventListener("click", () => {
+                const value = star.getAttribute("data-value");
+                ratingInput.value = value;
+
+                // tüm yıldızları resetle
+                stars.forEach(s => s.classList.remove("fas"));
+                stars.forEach(s => s.classList.add("far"));
+
+                // seçilen ve öncekileri doldur
+                for (let i = 0; i < value; i++) {
+                    stars[i].classList.remove("far");
+                    stars[i].classList.add("fas");
+                }
+            });
+        });
+    </script>

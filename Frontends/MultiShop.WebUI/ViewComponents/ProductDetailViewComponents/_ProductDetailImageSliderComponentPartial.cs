@@ -20,9 +20,9 @@ namespace MultiShop.WebUI.ViewComponents.ProductDetailViewComponents
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<GetByIdProductImageDto>(jsonData);
-                return View(values);
+                return View(values ?? new GetByIdProductImageDto());
             }
-            return View();
+            return View(new GetByIdProductImageDto());
         }
     }
 }
