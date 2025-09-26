@@ -1,4 +1,4 @@
-﻿
+﻿@model CreateContactDto
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/UILayout/_UILayout.cshtml";
@@ -22,26 +22,26 @@
         <div class="col-lg-7 mb-5">
             <div class="contact-form bg-light p-30">
                 <div id="success"></div>
-                <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                <form method="post">
                     <div class="control-group">
-                        <input type="text" class="form-control" id="name" placeholder="Adınız"
-                               required="required" data-validation-required-message="Lütfen adınızı giriniz" />
+                        <input type="text" class="form-control" id="name" placeholder="Adınız soyadınız"
+                               required="required" data-validation-required-message="Lütfen adınızı giriniz" asp-for="NameSurname" />
                         <p class="help-block text-danger"></p>
                     </div>
                     <div class="control-group">
                         <input type="email" class="form-control" id="email" placeholder="Email"
-                               required="required" data-validation-required-message="Lütfen email giriniz" />
+                               required="required" data-validation-required-message="Lütfen email giriniz"  asp-for="Email"/>
                         <p class="help-block text-danger"></p>
                     </div>
                     <div class="control-group">
                         <input type="text" class="form-control" id="subject" placeholder="Konu"
-                               required="required" data-validation-required-message="Lütfen konu giriniz" />
+                               required="required" data-validation-required-message="Lütfen konu giriniz" asp-for="Subject" />
                         <p class="help-block text-danger"></p>
                     </div>
                     <div class="control-group">
                         <textarea class="form-control" rows="8" id="message" placeholder="Mesaj"
                                   required="required"
-                                  data-validation-required-message="Lütfen mesajınızı giriniz"></textarea>
+                                  data-validation-required-message="Lütfen mesajınızı giriniz" asp-for="Message"></textarea>
                         <p class="help-block text-danger"></p>
                     </div>
                     <div>
