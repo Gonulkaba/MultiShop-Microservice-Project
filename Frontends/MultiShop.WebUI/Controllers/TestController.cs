@@ -45,7 +45,6 @@ namespace MultiShop.WebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-
 			var responseMessage = await client.GetAsync("https://localhost:7070/api/Categories");
 			if (responseMessage.IsSuccessStatusCode)
 			{
@@ -56,5 +55,11 @@ namespace MultiShop.WebUI.Controllers
 			return View();
 		}
 
-	}
+        public IActionResult Deneme1()
+        {
+            return View();
+        }
+
+
+    }
 }

@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 using MultiShop.WebUI.Services;
+using MultiShop.WebUI.Services.Interfaces;
 
 namespace MultiShop.WebUI.Controllers
 {
@@ -15,13 +16,15 @@ namespace MultiShop.WebUI.Controllers
 	{
 		private readonly IHttpClientFactory _httpClientFactory;
 		private readonly ILoginService _loginService;
+		private readonly IIdentityService _identityService;
 
-		public LoginController(IHttpClientFactory httpClientFactory, ILoginService loginService)
-		{
-			_httpClientFactory = httpClientFactory;
-			_loginService = loginService;
-		}
-		[HttpGet]
+        public LoginController(IHttpClientFactory httpClientFactory, ILoginService loginService, IIdentityService identityService)
+        {
+            _httpClientFactory = httpClientFactory;
+            _loginService = loginService;
+            _identityService = identityService;
+        }
+        [HttpGet]
 		public IActionResult Index()
 		{
 			return View();
@@ -62,5 +65,19 @@ namespace MultiShop.WebUI.Controllers
 			}
 			return View();
 		}
-	}
+
+        [HttpGet]
+        public IActionResult SingIn()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> SignIn(SignInDto signUpDto)
+        {
+            signUpDto.UserName = "ali02";
+            signUpDto.Password = "1234.aA*";
+            await _identityService.SignIn(signUpDto);
+            return RedirectToAction("Index", "Test");
+        }
+    }
 }
