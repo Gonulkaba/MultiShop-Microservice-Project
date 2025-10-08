@@ -15,13 +15,11 @@ namespace MultiShop.WebUI.Controllers
 	public class LoginController : Controller
 	{
 		private readonly IHttpClientFactory _httpClientFactory;
-		private readonly ILoginService _loginService;
 		private readonly IIdentityService _identityService;
 
-        public LoginController(IHttpClientFactory httpClientFactory, ILoginService loginService, IIdentityService identityService)
+        public LoginController(IHttpClientFactory httpClientFactory, IIdentityService identityService)
         {
             _httpClientFactory = httpClientFactory;
-            _loginService = loginService;
             _identityService = identityService;
         }
         [HttpGet]
@@ -30,9 +28,9 @@ namespace MultiShop.WebUI.Controllers
 			return View();
 		}
 		[HttpPost]
-		public async Task<IActionResult> Index(CreateLoginDto createLoginDto)
+		public async Task<IActionResult> Index(SignInDto signInDto)
 		{
-			/*
+            /*
 			var client = _httpClientFactory.CreateClient();
 			var content = new StringContent(JsonSerializer.Serialize(createLoginDto), Encoding.UTF8, "application/json");
 			var response = await client.PostAsync("http://localhost:5001/api/Logins",content);
@@ -66,11 +64,11 @@ namespace MultiShop.WebUI.Controllers
 			}
 			*/
 
-
-
-			return View();
+            await _identityService.SignIn(signInDto);
+            return RedirectToAction("Index", "User");
 		}
 
+		//Pasif metot
         //[HttpPost]
         public async Task<IActionResult> SignIn(SignInDto signInDto)
         {
