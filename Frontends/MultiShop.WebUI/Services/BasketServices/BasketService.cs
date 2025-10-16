@@ -1,4 +1,5 @@
 ﻿using MultiShop.DtoLayer.BasketDtos;
+using NuGet.ContentModel;
 
 namespace MultiShop.WebUI.Services.BasketServices
 {
@@ -12,17 +13,16 @@ namespace MultiShop.WebUI.Services.BasketServices
         public async Task AddBasketItem(BasketItemDto basketItemDto)
         {
             var values = await GetBasket();
-            if (values != null)
+            // Sepette aynı ürün var mı kontrol et ve ekle 
+            var existingItem = values.BasketItems.FirstOrDefault(x => x.ProductId == basketItemDto.ProductId);
+
+            if (existingItem != null)
             {
-                if (!values.BasketItems.Any(x => x.ProductId == basketItemDto.ProductId))
-                {
-                    values.BasketItems.Add(basketItemDto);
-                }
-                else
-                {
-                    values = new BasketTotalDto();
-                    values.BasketItems.Add(basketItemDto);
-                }
+                existingItem.Quantity += basketItemDto.Quantity;
+            }
+            else
+            {
+                values.BasketItems.Add(basketItemDto);
             }
             await SaveBasket(values);
         }

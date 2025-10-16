@@ -16,11 +16,25 @@ namespace MultiShop.WebUI.Controllers
             _productService = productService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string code, int discountRate, decimal totalNewPriceWithDiscount)
         {
+            ViewBag.code = code;
+            ViewBag.discountRate = discountRate;
+            ViewBag.totalNewPriceWithDiscount = totalNewPriceWithDiscount;
             ViewBag.directory1 = "Ana Sayfa";
             ViewBag.directory2 = "Ürünler";
             ViewBag.directory3 = "Sepetim";
+            var values = await _basketService.GetBasket();
+            ViewBag.total = values.TotalPrice;
+            var tax = values.TotalPrice / 100 * 10;
+            var totalPriceWithTax = values.TotalPrice + tax;
+            ViewBag.tax = tax;
+            ViewBag.totalPriceWithTax = totalPriceWithTax;
+            // Eğer indirim uygulanmamışsa (kupon yoksa)
+            if (discountRate == 0 || totalNewPriceWithDiscount == 0)
+            {
+                ViewBag.totalNewPriceWithDiscount = totalPriceWithTax;
+            }
             return View();
         }
         public async Task<IActionResult> AddBasketItem(string id)
