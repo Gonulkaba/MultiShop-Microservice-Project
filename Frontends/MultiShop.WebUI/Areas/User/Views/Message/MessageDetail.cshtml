@@ -1,0 +1,64 @@
+﻿@model GetByIdMessageDto
+@{
+    ViewData["Title"] = "MessageDetail";
+    Layout = "~/Areas/User/Views/UserLayout/Index.cshtml";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row justify-content-center">
+            <div class="col-md-8 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Mesaj Detayı</h4>
+                        <form class="forms-sample">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">@((ViewBag.MessageType == "inbox") ? "Gönderen" : "Alıcı")</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control"
+                                           value="@(ViewBag.MessageType == "inbox" ? Model.SenderId : Model.ReceiverId)" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Konu</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control" value="@Model.Subject" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Tarih</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control" value="@Model.MessageDate.ToString("dd-MMM-yyyy HH:mm")" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Durum</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control" value="@(Model.IsRead ? "Okundu" : "Okunmadı")" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Mesaj</label>
+                                <div class="col-sm-9">
+                                    <textarea readonly class="form-control" rows="6">@Model.MessageDetail</textarea>
+                                </div>
+                            </div>
+
+                            <div class="mt-3 d-flex justify-content-end">
+                                <a href="@(
+                                    ViewBag.MessageType == "inbox"
+                                    ? "/User/Message/Inbox"
+                                    : "/User/Message/Sendbox"
+                                    )"
+                                   class="btn btn-light me-2">
+                                    Geri
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
