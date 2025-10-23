@@ -60,5 +60,11 @@ namespace MultiShop.Cargo.WebApi.Controllers
 			_cargoCustomerService.TUpdate(value);
 			return Ok();
 		}
-	}
+
+        [HttpGet("GetCargoCustomerByUserId")]
+        public IActionResult GetCargoCustomerByUserId(string id)
+        {
+            return Ok(_cargoCustomerService.TGetCargoCustomerById(id));
+        }
+    }
 }
