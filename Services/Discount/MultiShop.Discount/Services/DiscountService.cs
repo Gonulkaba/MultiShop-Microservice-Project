@@ -98,10 +98,14 @@ namespace MultiShop.Discount.Services
                 await connection.ExecuteAsync(query, parameters);
             }
         }
-
-        Task<List<ResultDiscountCouponDto>> IDiscountService.GetAllDiscountCouponAsync()
+        public async Task<int> GetDiscountCouponCount()
         {
-            throw new NotImplementedException();
+            string query = "Select Count(*) From Coupons";
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryFirstOrDefaultAsync<int>(query);
+                return values;
+            }
         }
     }
 }

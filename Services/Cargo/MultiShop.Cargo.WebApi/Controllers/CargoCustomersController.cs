@@ -61,8 +61,8 @@ namespace MultiShop.Cargo.WebApi.Controllers
 			return Ok();
 		}
 
-        [HttpGet("GetCargoCustomerByUserId")]
-        public IActionResult GetCargoCustomerByUserId(string id)
+        [HttpGet("GetCargoCustomerById")]
+        public IActionResult GetCargoCustomerById(string id)
         {
             return Ok(_cargoCustomerService.TGetCargoCustomerById(id));
         }
