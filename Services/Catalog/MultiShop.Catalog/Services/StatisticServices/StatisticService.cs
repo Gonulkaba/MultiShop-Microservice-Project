@@ -60,15 +60,20 @@ namespace MultiShop.Catalog.Services.StatisticServices
         {
             var pipeline = new BsonDocument[]
             {
-              new BsonDocument("$group",new BsonDocument
-              {
-                  {"_id",null },
-                  {"averagePrice",new BsonDocument("$avg","$ProductPrice") }
-              })
-            };
+                 new BsonDocument("$group", new BsonDocument
+                 {
+                      { "_id", BsonNull.Value },
+                      { "averagePrice", new BsonDocument("$avg", "$ProductPrice") }
+                 })
+             };
+
             var result = await _productCollection.AggregateAsync<BsonDocument>(pipeline);
-            var price = result.FirstOrDefault().GetValue("averagePrice", decimal.Zero).AsDecimal;
-            return price;
+            var document = await result.FirstOrDefaultAsync();
+
+            if (document == null || !document.Contains("averagePrice"))
+                return 0; 
+
+            return document["averagePrice"].ToDecimal();
         }
 
         public Task<long> GetProductCount()

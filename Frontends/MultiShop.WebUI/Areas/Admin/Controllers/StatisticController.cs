@@ -30,6 +30,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             var getBrandCount = await _catalogStatisticService.GetBrandCount();
             var getProductCount = await _catalogStatisticService.GetProductCount();
             var getCategoryCount = await _catalogStatisticService.GetCategoryCount();
+            var getProductAvgPrice = await _catalogStatisticService.GetProductAvgPrice();
             var getMaxPriceProductName = await _catalogStatisticService.GetMaxPriceProductName();
             var getMinPriceProductName = await _catalogStatisticService.GetMinPriceProductName();
 
@@ -46,6 +47,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.getBrandCount = getBrandCount;
             ViewBag.getProductCount = getProductCount;
             ViewBag.getCategoryCount = getCategoryCount;
+            ViewBag.getProductAvgPrice = getProductAvgPrice;
             ViewBag.getMaxPriceProductName = getMaxPriceProductName;
             ViewBag.getMinPriceProductName = getMinPriceProductName;
 
