@@ -1,11 +1,12 @@
-﻿<header class="main-header dark-bg">
+﻿
+<header class="main-header dark-bg">
 
     <!-- Logo -->
     <a href="../index.html" class="logo dark-bg">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><img src="~/images/logos/multishop1.jpg" style="width:50px; height:50px;" alt="multishop"></span>
+        <span class="logo-mini"><img src="~/images/logos/mulhtishop1.jpg" style="width:50px;height:50px; important!" alt="Ovio"></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><img src="~/images/logos/multishop1.jpg" style="width:180px; height:50px;" alt="multishop"></span>
+        <span class="logo-lg"><img src="~/images/logos/mulhtishop1.jpg" style="width:200px;height:50px; important!" alt="Ovio"></span>
     </a>
 
     <!-- Header Navbar -->
@@ -15,7 +16,7 @@
         <div class="pull-left search-box">
             <form action="#" method="get" class="search-form">
                 <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="Aranacak kelimeyi giriniz.....">
+                    <input type="text" name="search" class="form-control" placeholder="Aranacak kelimeyi giriniz">
                     <span class="input-group-btn">
                         <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i> </button>
                     </span>
@@ -29,10 +30,13 @@
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-envelope"></i>
-                        <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                        <span class="badge" style="position:relative;top:-10px">
+                            <strong id="messageCount"></strong>
+                        </span>
+                        
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have 4 messages</li>
+                        <li class="header"> @ViewBag.MessageCount mesajın var</li>
                         <li>
                             <ul class="menu">
                                 <li>
@@ -77,10 +81,13 @@
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-megaphone"></i>
-                        <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            <span class="badge" style="position:relative;top:-10px">
+                                <strong id="commentCount"></strong>
+                            </span>
+                        
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">Notifications</li>
+                        <li class="header">Son Yorumlar</li>
                         <li>
                             <ul class="menu">
                                 <li><a href="#"><i class="icon-lightbulb"></i> Lorem ipsum dolor sit amet </a> </li>
@@ -95,11 +102,11 @@
                 <!-- Tasks Menu -->
                 <!-- User Account Menu -->
                 <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="../dist/img/img1.jpg" class="user-image" alt="User Image"> <span class="hidden-xs">Admin 01</span> </a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="~/images/logos/manlogo.jpg" class="user-image" alt="User Image"> <span class="hidden-xs">Admin 01</span> </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <div class="pull-left user-img"><img src="../dist/img/img1.jpg" class="img-responsive" alt="User"></div>
-                            <p class="text-left">Berkcan Yıldız <small>multishop@gmail.com</small> </p>
+                            <div class="pull-left user-img"><img src="~/images/logos/manlogo.jpg" class="img-responsive" alt="User"></div>
+                            <p class="text-left">Berk Yıldız <small>multishop@gmail.com</small> </p>
                             <div class="view-link text-left"><a href="#">View Profile</a> </div>
                         </li>
                         <li><a href="#"><i class="icon-profile-male"></i> My Profile</a></li>
@@ -115,3 +122,8 @@
         </div>
     </nav>
 </header>
+<script>
+    // Kullanıcı ID'sini global olarak tanımla
+    window.__currentUserId = "@ViewBag.UserId";
+    console.log("Current User ID:", window.__currentUserId);
+</script>

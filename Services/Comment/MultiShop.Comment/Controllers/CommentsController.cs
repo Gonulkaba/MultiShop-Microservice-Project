@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using MultiShop.Comment.Context;
 using MultiShop.Comment.Entities;
+using System.Net.Http;
 
 namespace MultiShop.Comment.Controllers
 {
@@ -18,19 +20,22 @@ namespace MultiShop.Comment.Controllers
             _context = context;
         }
 
+        [HttpPost]
+        public IActionResult CreateComment(UserComment userComment)
+        {
+            _context.UserComments.Add(userComment);
+            _context.SaveChanges();
+            return Ok("Yorum başarıyla eklendi");
+        }
+
+
         [HttpGet]
         public IActionResult CommentList()
         {
             var values = _context.UserComments.ToList();
             return Ok(values);
         }
-        [HttpPost]
-        public IActionResult CreateComment(UserComment userComment)
-        {
-            _context.UserComments.Add(userComment);
-            _context.SaveChanges();
-            return Ok("Yorum Başarıyla Eklendi");
-        }
+
         [HttpDelete]
         public IActionResult DeleteComment(int id)
         {

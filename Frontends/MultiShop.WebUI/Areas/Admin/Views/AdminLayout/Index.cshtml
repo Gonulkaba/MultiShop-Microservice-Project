@@ -41,5 +41,46 @@
     <script src="~/MainDownload-OvioAdmin-html5-template/html/dist/js/jquery.min.js"></script>
     <script src="~/MainDownload-OvioAdmin-html5-template/html/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/MainDownload-OvioAdmin-html5-template/html/dist/js/ovio.js"></script>
+    <script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script>
+        (function () {
+            if (window.__signalRInitialized) return;
+            window.__signalRInitialized = true;
+
+            const hubUrl = window.__signalRHubUrl || "https://localhost:7222/signalrhub";
+            console.log("Layout SignalR hubUrl:", hubUrl);
+
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl(hubUrl)
+                .withAutomaticReconnect()
+                .build();
+
+            window.__signalRConnection = connection;
+
+            connection.start()
+                .then(() => {
+                    console.log("SignalR connected (layout).");
+                    const userId = window.__currentUserId || null;
+                    
+                    if (userId) {
+                        connection.invoke("SendStatisticCount", userId).catch(e => console.error(e));
+                    } else {
+                        connection.invoke("SendStatisticCount", "").catch(e => console.error(e));
+                    }
+                })
+                .catch(err => console.error("SignalR start error:", err));
+
+            connection.on("ReceiveCommentCount", function (count) {
+                const el = document.getElementById("commentCount");
+                if (el) el.innerText = count;
+            });
+
+            connection.on("ReceiveMessageCount", function (count) {
+                const el = document.getElementById("messageCount");
+                if (el) el.innerText = count;
+            });
+        })();
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
