@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MultiShop.DtoLayer.CatalogDtos.CategoryDtos;
 using MultiShop.WebUI.Services.CatalogServices.CategoryServices;
 using Newtonsoft.Json;
@@ -7,6 +8,7 @@ using System.Net.Http.Headers;
 
 namespace MultiShop.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class TestController : Controller
     {
 		private readonly IHttpClientFactory _httpClientFactory;

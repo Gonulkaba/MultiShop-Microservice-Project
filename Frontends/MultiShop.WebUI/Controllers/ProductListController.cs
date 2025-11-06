@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MultiShop.DtoLayer.CommentDtos;
 using MultiShop.WebUI.Services.CommentServices;
 using Newtonsoft.Json;
@@ -6,6 +7,7 @@ using System.Text;
 
 namespace MultiShop.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class ProductListController : Controller
     {
         private readonly ICommentService _commentService;

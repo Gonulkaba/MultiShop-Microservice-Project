@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using MultiShop.WebUI.Handlers;
 using MultiShop.WebUI.Services;
@@ -39,7 +41,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCo
 	{
 		opt.LoginPath = "/Login/Index/";
 		opt.LogoutPath = "/Login/LogOut/";
-		opt.AccessDeniedPath = "/Pages/AccessDenied/";
+		opt.AccessDeniedPath = "/Login/AccessDenied/";
 		opt.Cookie.HttpOnly = true;
 		opt.Cookie.SameSite = SameSiteMode.Strict;
 		opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
@@ -64,7 +66,14 @@ builder.Services.AddHttpClient<IIdentityService, IdentityService>();
 
 // Add services to the container.
 builder.Services.AddHttpClient();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    var policy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+
+    options.Filters.Add(new AuthorizeFilter(policy));
+});
 
 builder.Services.Configure<ClientSettings>(builder.Configuration.GetSection("ClientSettings"));
 builder.Services.Configure<ServiceApiSettings>(builder.Configuration.GetSection("ServiceApiSettings"));

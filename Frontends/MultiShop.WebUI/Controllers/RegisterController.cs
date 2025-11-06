@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MultiShop.DtoLayer.IdentityDtos.RegisterDtos;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace MultiShop.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
 		private readonly IHttpClientFactory _httpClientFactory;

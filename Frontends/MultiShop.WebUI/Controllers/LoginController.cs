@@ -9,10 +9,12 @@ using System.Text;
 using System.Text.Json;
 using MultiShop.WebUI.Services;
 using MultiShop.WebUI.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MultiShop.WebUI.Controllers
 {
-	public class LoginController : Controller
+    [AllowAnonymous]
+    public class LoginController : Controller
 	{
 		private readonly IHttpClientFactory _httpClientFactory;
 		private readonly IIdentityService _identityService;
@@ -76,6 +78,11 @@ namespace MultiShop.WebUI.Controllers
             signInDto.Password = "1234.aA*";
             await _identityService.SignIn(signInDto);
             return RedirectToAction("Index", "User");
+        }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

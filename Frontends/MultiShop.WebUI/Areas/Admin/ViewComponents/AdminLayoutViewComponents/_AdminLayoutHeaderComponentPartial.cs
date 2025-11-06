@@ -40,7 +40,7 @@ namespace MultiShop.WebUI.Areas.Admin.ViewComponents.AdminLayoutViewComponents
             // SignalR mikroservis adresini ViewBag’e gönder
             ViewBag.SignalRUrl = _serviceApiSettings.Value.SignalRUrl;
 
-            return View();
+            return View(user);
         }
     }
 }
