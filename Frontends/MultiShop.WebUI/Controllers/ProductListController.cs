@@ -43,7 +43,6 @@ namespace MultiShop.WebUI.Controllers
         {
             createCommentDto.CreatedDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             createCommentDto.Status = false;
-            createCommentDto.ImageUrl = "test";
             await _commentService.CreateCommentAsync(createCommentDto);
             return RedirectToAction("Index", "Default");
 

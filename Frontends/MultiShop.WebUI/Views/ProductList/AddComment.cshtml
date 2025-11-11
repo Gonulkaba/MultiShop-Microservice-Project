@@ -14,6 +14,7 @@
     <form method="post" asp-action="AddComment" asp-controller="ProductList">
         <input type="hidden" name="ProductId" value="@Model" />
         <input type="hidden" id="rating" name="Rating" value="0" />
+        <input type="hidden" id="ImageUrl" name="ImageUrl" />
         <div class="form-group">
             <label for="name">Adınız Soyadınız *</label>
             <input type="text" class="form-control" id="name" name="NameSurname">
@@ -52,4 +53,13 @@
                 }
             });
         });
+    // Ad Soyad alanından otomatik avatar oluştur
+    document.getElementById("name").addEventListener("blur", function () {
+        let fullName = this.value.trim();
+        if (fullName.length > 0) {
+            let encodedName = encodeURIComponent(fullName);
+            let imageUrl = `https://ui-avatars.com/api/?name=${encodedName}&background=BDC3C7&color=ffffff&length=2&size=64`;
+            document.getElementById("ImageUrl").value = imageUrl;
+        }
+    });
     </script>
