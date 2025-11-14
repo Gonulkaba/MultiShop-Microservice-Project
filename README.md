@@ -48,7 +48,8 @@ Projede hem **kullanıcı (User)** hem de **yönetici (Admin)** panelleri bulunm
 - **IdentityServer4** ve **JWT** ile güvenli kimlik doğrulama  
 - **RabbitMQ** ile asenkron mesajlaşma  
 - **SignalR** ile gerçek zamanlı bildirimler  
-- **Google Cloud Storage** ile bulut tabanlı dosya yönetimi  
+- **Google Cloud Storage** ile bulut tabanlı dosya yönetimi
+- **DBeaver** ile veritabanlarını tek noktadan yönetme
 - Çoklu veritabanı desteği: **MSSQL, PostgreSQL, MongoDB, Redis**  
 
 ---
@@ -83,6 +84,8 @@ Bu sayede her servis kendi bağımsız yaşam döngüsüne sahiptir ve sistemin 
 | **ORM / Data Access** | Entity Framework Core, Dapper |
 | **API Test & Dökümantasyon** | Swagger, Postman |
 | **Mesajlaşma & Queue** | RabbitMQ |
+| **E-Mail Servisi** | MailKit |
+| **Veritabanı Yönetimi** | DBeaver |
 | **Containerization** | Docker |
 | **Gateway Yönetimi** | Ocelot API Gateway |
 | **Gerçek Zamanlı İletişim** | SignalR |
@@ -145,6 +148,9 @@ Bu sayede her servis kendi bağımsız yaşam döngüsüne sahiptir ve sistemin 
 ### Ürünler
 <img width="1288" height="940" alt="AdminProduct" src="https://github.com/user-attachments/assets/070932bb-c51c-4362-b37b-f3a2944c6d98" />
 
+### Ürün Güncelleme sayfası
+![AdminUpdateProduct](https://github.com/user-attachments/assets/f12d9f09-8463-498e-8259-3e9c5553131d)
+
 ### Ürün Görsel İşlemleri
 <img width="1286" height="552" alt="AdminProductImages" src="https://github.com/user-attachments/assets/63010407-8426-4859-97e7-c52bba5b01fe" />
 
@@ -183,12 +189,17 @@ Bu sayede her servis kendi bağımsız yaşam döngüsüne sahiptir ve sistemin 
 ## 👤 Kullanıcı Paneli
 ### Gelen Mesajlar
 ![UserMessageInbox](https://github.com/user-attachments/assets/d2451af3-3cd4-49dc-8d2f-63384166a6ec)
+### Gelen Mesaj Detay
+<img width="1476" height="904" alt="UserMessageDetail" src="https://github.com/user-attachments/assets/63f3ba1b-4ac9-4ed9-b041-c79a9e316c7e" />
+
 ### Gönderilen Mesajlar
 ![UserMessageSendbox](https://github.com/user-attachments/assets/4b43921b-2280-4bfe-9f2a-4309ae231c37)
-
 
 ## 🚀 Docker
 <img width="1554" height="693" alt="Docker" src="https://github.com/user-attachments/assets/4ae6d4da-add7-4295-8c38-50a0a3c1c965" />
 
-
 ## ⚙ MongoDb
+<img width="1839" height="746" alt="MongoDb" src="https://github.com/user-attachments/assets/b5c55517-2ae7-46a4-b540-f29572fc441a" />
+
+## ⚙️ Startup Yapılandırması
+<img width="914" height="768" alt="StartupProject" src="https://github.com/user-attachments/assets/dba59e37-1fb9-4c1c-af40-83b1ac55a385" />
